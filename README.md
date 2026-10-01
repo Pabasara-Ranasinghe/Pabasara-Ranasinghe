@@ -132,6 +132,23 @@
 
 <br>
 
+
+<!-- ==================== GITHUB CONTRIBUTION ==================== -->
+
+<div align="center">
+
+<h2>🌸 GitHub Contributions</h2>
+
+<img
+  src="public/contribution-calendar.svg"
+  width="100%"
+  alt="GitHub Contribution Calendar"
+/>
+
+</div>
+
+
+
 <!-- ==================== FEATURED PROJECTS ==================== -->
 
 <h2 align="center">🚀 Featured Projects</h2>
