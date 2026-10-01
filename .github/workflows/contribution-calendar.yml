@@ -36,4 +36,6 @@ jobs:
 
           git commit -m "chore: update contribution calendar"
 
-          git push
+          git pull --rebase origin main
+
+          git push origin main
