@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: contribution-calendar
+  cancel-in-progress: false
+
 jobs:
   generate-calendar:
     runs-on: ubuntu-latest
@@ -36,6 +40,25 @@ jobs:
 
           git commit -m "chore: update contribution calendar"
 
+      - name: Push calendar
+        run: |
           git pull --rebase origin main
 
-          git push origin main
+          for attempt in 1 2 3 4 5
+          do
+            echo "Push attempt $attempt..."
+
+            if git push origin main; then
+              echo "Push successful."
+              exit 0
+            fi
+
+            echo "Push failed. Waiting before retry..."
+
+            sleep $((attempt * 10))
+
+            git pull --rebase origin main
+          done
+
+          echo "All push attempts failed."
+          exit 1
