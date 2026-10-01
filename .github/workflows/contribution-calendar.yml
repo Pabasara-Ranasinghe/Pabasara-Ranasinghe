@@ -1,19 +1,13 @@
 name: Contribution Calendar
 
 on:
-  # 1. Triggers every day at midnight UTC
   schedule:
     - cron: '0 0 * * *'
-
-  # 2. Allows manual trigger from the Actions tab anytime
   workflow_dispatch:
-
-  # 3. Runs on pushes to the main branch
   push:
     branches:
       - main
 
-# Grant write permissions so the runner can commit and push back to the repository
 permissions:
   contents: write
 
@@ -38,7 +32,8 @@ jobs:
 
       - name: Commit and Push Updated SVG
         run: |
+          mkdir -p public
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/contribution-calendar-light.svg
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update contribution calendar" && git push)
+          git add -A public/
+          git diff --staged --quiet || (git commit -m "chore: auto-update contribution calendar" && git push)
