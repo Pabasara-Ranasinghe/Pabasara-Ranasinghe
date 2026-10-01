@@ -49,7 +49,7 @@ function generateSVG(contributionData) {
     svg += `<text x="5" y="${y}" class="text">${day.name}</text>`;
   });
 
-  // 4. Contribution Grid Squares (Guarded against extra stray days)
+  // 4. Contribution Grid Squares (With hover tooltips)
   weeks.forEach((week, weekIndex) => {
     const x = dayLabelWidth + weekIndex * (squareSize + squareGap);
 
@@ -60,7 +60,13 @@ function generateSVG(contributionData) {
       const y = gridStartY + dayIndex * (squareSize + squareGap);
       const color = day.color || '#ebedf0';
 
-      svg += `<rect class="day" x="${x}" y="${y}" width="${squareSize}" height="${squareSize}" fill="${color}" />`;
+      const dateStr = day.date; // e.g., "2026-09-29"
+      const count = day.contributionCount || 0;
+      const tooltipText = `${count} contribution${count === 1 ? '' : 's'} on ${dateStr}`;
+
+      svg += `<rect class="day" x="${x}" y="${y}" width="${squareSize}" height="${squareSize}" fill="${color}">`;
+      svg += `<title>${tooltipText}</title>`;
+      svg += `</rect>`;
     });
   });
 
