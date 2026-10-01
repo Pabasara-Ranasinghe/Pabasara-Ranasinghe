@@ -50,11 +50,12 @@ if (result.errors) {
   throw new Error(JSON.stringify(result.errors, null, 2));
 }
 
-const calendar = result.data.user.contributionsCollection.contributionCalendar;
+const calendar =
+  result.data.user.contributionsCollection.contributionCalendar;
 
-const days = calendar.weeks.flatMap(
-  week => week.contributionDays
-);
+/* --------------------------------
+   COLORS
+-------------------------------- */
 
 const COLORS = {
   NONE: "#ebedf0",
@@ -71,58 +72,77 @@ function getColor(day) {
   if (count <= 2) return COLORS.FIRST;
   if (count <= 5) return COLORS.SECOND;
   if (count <= 9) return COLORS.THIRD;
+
   return COLORS.FOURTH;
 }
+
+/* --------------------------------
+   CALENDAR DATA
+-------------------------------- */
+
+const weeks = calendar.weeks;
+
+/* --------------------------------
+   SVG DIMENSIONS
+-------------------------------- */
 
 const cellSize = 12;
 const gap = 4;
 
-const leftMargin = 42;
-const topMargin = 32;
+const leftMargin = 44;
+const rightMargin = 20;
+
+const topMargin = 50;
 const bottomMargin = 42;
 
-const columns = calendar.weeks.length;
+const columns = weeks.length;
 
 const width =
   leftMargin +
   columns * (cellSize + gap) +
-  20;
+  rightMargin;
 
 const height =
   topMargin +
   7 * (cellSize + gap) +
   bottomMargin;
 
-const firstDate = new Date(days[0].date + "T00:00:00");
+/* --------------------------------
+   MONTH LABELS
+-------------------------------- */
 
 const months = [];
 
-let previousMonth = "";
+let lastMonth = "";
 
-days.forEach((day, index) => {
-  const date = new Date(day.date + "T00:00:00");
+weeks.forEach((week, weekIndex) => {
+  const firstDay = week.contributionDays[0];
 
-  if (date.getDate() === 1 || index === 0) {
-    const monthName = date.toLocaleString("en-US", {
-      month: "short"
+  if (!firstDay) return;
+
+  const date = new Date(firstDay.date + "T00:00:00");
+
+  const monthName = date.toLocaleString("en-US", {
+    month: "short"
+  });
+
+  /*
+   Only add a month label when the
+   month actually changes.
+  */
+  if (monthName !== lastMonth) {
+    months.push({
+      name: monthName,
+      weekIndex
     });
 
-    if (monthName !== previousMonth) {
-      months.push({
-        name: monthName,
-        weekIndex: Math.floor(index / 7)
-      });
-
-      previousMonth = monthName;
-    }
+    lastMonth = monthName;
   }
 });
 
-const weekdays = [
-  { name: "Mon", row: 1 },
-  { name: "Wed", row: 3 },
-  { name: "Fri", row: 5 }
-];
+/* --------------------------------
+   START SVG
+-------------------------------- */
 
 let svg = `
 <svg
@@ -142,6 +162,7 @@ let svg = `
 />
 
 <style>
+
   text {
     font-family:
       -apple-system,
@@ -149,14 +170,20 @@ let svg = `
       "Segoe UI",
       Arial,
       sans-serif;
+
     fill: #5D3140;
   }
 
-  .weekday {
-    font-size: 10px;
+  .title {
+    font-size: 12px;
+    font-weight: 600;
   }
 
   .month {
+    font-size: 10px;
+  }
+
+  .weekday {
     font-size: 10px;
   }
 
@@ -167,21 +194,34 @@ let svg = `
   .day {
     rx: 3;
   }
+
 </style>
 `;
 
+/* --------------------------------
+   TITLE
+-------------------------------- */
+
 svg += `
 <text
+  class="title"
   x="${leftMargin}"
-  y="18"
-  font-size="12"
-  font-weight="600"
+  y="20"
 >
-  ${calendar.totalContributions.toLocaleString()} contributions in the last year
+  ${calendar.totalContributions.toLocaleString()}
+  contributions in the last year
 </text>
 `;
 
-for (const month of months) {
+/* --------------------------------
+   MONTH LABELS
+
+   Start them lower than the title
+   so they don't overlap.
+-------------------------------- */
+
+months.forEach(month => {
+
   const x =
     leftMargin +
     month.weekIndex * (cellSize + gap);
@@ -190,17 +230,28 @@ for (const month of months) {
   <text
     class="month"
     x="${x}"
-    y="${topMargin - 10}"
+    y="38"
   >
     ${month.name}
   </text>
   `;
-}
+});
 
-for (const weekday of weekdays) {
+/* --------------------------------
+   WEEKDAY LABELS
+-------------------------------- */
+
+const weekdays = [
+  { name: "Mon", row: 1 },
+  { name: "Wed", row: 3 },
+  { name: "Fri", row: 5 }
+];
+
+weekdays.forEach(day => {
+
   const y =
     topMargin +
-    weekday.row * (cellSize + gap) +
+    day.row * (cellSize + gap) +
     9;
 
   svg += `
@@ -209,19 +260,38 @@ for (const weekday of weekdays) {
     x="4"
     y="${y}"
   >
-    ${weekday.name}
+    ${day.name}
   </text>
   `;
-}
+});
 
-calendar.weeks.forEach((week, weekIndex) => {
+/* --------------------------------
+   CONTRIBUTION SQUARES
+-------------------------------- */
+
+weeks.forEach((week, weekIndex) => {
+
   week.contributionDays.forEach(day => {
-    const date = new Date(day.date + "T00:00:00");
+
+    const date =
+      new Date(day.date + "T00:00:00");
+
+    /*
+     Sunday = 0
+
+     Convert to:
+     Monday = 0
+     Tuesday = 1
+     ...
+     Sunday = 6
+    */
 
     const dayOfWeek = date.getDay();
 
-    // Convert Sunday=0 to Monday=0
-    const row = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    const row =
+      dayOfWeek === 0
+        ? 6
+        : dayOfWeek - 1;
 
     const x =
       leftMargin +
@@ -231,12 +301,15 @@ calendar.weeks.forEach((week, weekIndex) => {
       topMargin +
       row * (cellSize + gap);
 
-    const count = day.contributionCount;
+    const count =
+      day.contributionCount;
 
     const label =
       count === 0
         ? `No contributions on ${day.date}`
-        : `${count} contribution${count === 1 ? "" : "s"} on ${day.date}`;
+        : `${count} contribution${
+            count === 1 ? "" : "s"
+          } on ${day.date}`;
 
     svg += `
     <rect
@@ -252,6 +325,10 @@ calendar.weeks.forEach((week, weekIndex) => {
     `;
   });
 });
+
+/* --------------------------------
+   LEGEND
+-------------------------------- */
 
 const legendY = height - 18;
 
@@ -274,6 +351,7 @@ const legendColors = [
 ];
 
 legendColors.forEach((color, index) => {
+
   const x =
     leftMargin +
     28 +
@@ -294,18 +372,33 @@ legendColors.forEach((color, index) => {
 svg += `
 <text
   class="legend"
-  x="${leftMargin + 28 + legendColors.length * 20 + 4}"
+  x="${
+    leftMargin +
+    28 +
+    legendColors.length * 20 +
+    4
+  }"
   y="${legendY}"
 >
   More
 </text>
 `;
 
+/* --------------------------------
+   CLOSE SVG
+-------------------------------- */
+
 svg += `
 </svg>
 `;
 
-fs.mkdirSync("public", { recursive: true });
+/* --------------------------------
+   SAVE FILE
+-------------------------------- */
+
+fs.mkdirSync("public", {
+  recursive: true
+});
 
 fs.writeFileSync(
   "public/contribution-calendar-light.svg",
