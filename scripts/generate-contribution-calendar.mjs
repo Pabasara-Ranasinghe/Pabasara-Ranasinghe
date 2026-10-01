@@ -1,146 +1,35 @@
-import fs from "fs";
-
-const username = "Pabasara-Ranasinghe";
-
-const COLORS = [
-  "#F6D8BD",
-  "#F39399",
-  "#CF4173",
-  "#A83A5D",
-  "#5D3140",
-];
-
-const query = `
-  query($login: String!) {
-    user(login: $login) {
-      contributionsCollection {
-        contributionCalendar {
-          totalContributions
-          weeks {
-            contributionDays {
-              date
-              contributionCount
-              contributionLevel
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-async function getContributions() {
-  const token = process.env.GITHUB_TOKEN;
-
-  if (!token) {
-    throw new Error("GITHUB_TOKEN is not available.");
-  }
-
-  const response = await fetch(
-    "https://api.github.com/graphql",
-    {
-      method: "POST",
-
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        query,
-        variables: {
-          login: username,
-        },
-      }),
-    }
-  );
-
-  const result = await response.json();
-
-  if (!response.ok || result.errors) {
-    console.error(result);
-    throw new Error(
-      "Failed to fetch GitHub contributions."
-    );
-  }
-
-  return (
-    result.data.user.contributionsCollection
-      .contributionCalendar
-  );
-}
-
-function levelToNumber(level) {
-  const levels = {
-    NONE: 0,
-    FIRST_QUARTILE: 1,
-    SECOND_QUARTILE: 2,
-    THIRD_QUARTILE: 3,
-    FOURTH_QUARTILE: 4,
-  };
-
-  return levels[level] ?? 0;
-}
-
-function createSvg(
-  weeks,
-  totalContributions
-) {
+function createSvg(weeks, totalContributions) {
   const blockSize = 13;
   const blockGap = 4;
 
-  /*
-   * Extra space at the top for:
-   * - Total contribution count
-   * - Month labels
-   */
-  const monthLabelHeight = 42;
-
+  const headerHeight = 92;
   const weekdayLabelWidth = 30;
 
-  const weekWidth =
-    blockSize + blockGap;
-
+  const weekWidth = blockSize + blockGap;
   const totalWeeks = weeks.length;
 
-  const calendarWidth =
-    weekdayLabelWidth +
-    totalWeeks * weekWidth;
-
-  const calendarHeight =
-    monthLabelHeight +
-    7 * weekWidth;
+  const calendarWidth = weekdayLabelWidth + totalWeeks * weekWidth;
+  const calendarHeight = headerHeight + 7 * weekWidth;
 
   const blocks = [];
 
   /*
    * Contribution squares
    */
-  weeks.forEach(
-    (week, weekIndex) => {
-      week.contributionDays.forEach(
-        (day) => {
-          const date = new Date(
-            `${day.date}T00:00:00`
-          );
+  weeks.forEach((week, weekIndex) => {
+    week.contributionDays.forEach((day) => {
+      // Fix: Append Z to parse strictly in UTC
+      const date = new Date(`${day.date}T00:00:00Z`);
 
-          const dayOfWeek =
-            date.getDay();
+      // Fix: Use UTC day calculation
+      const dayOfWeek = date.getUTCDay();
 
-          const x =
-            weekdayLabelWidth +
-            weekIndex * weekWidth;
+      const x = weekdayLabelWidth + weekIndex * weekWidth;
+      const y = headerHeight + dayOfWeek * weekWidth;
 
-          const y =
-            monthLabelHeight +
-            dayOfWeek * weekWidth;
+      const level = levelToNumber(day.contributionLevel);
 
-          const level =
-            levelToNumber(
-              day.contributionLevel
-            );
-
-          blocks.push(`
+      blocks.push(`
         <rect
           x="${x}"
           y="${y}"
@@ -150,58 +39,36 @@ function createSvg(
           fill="${COLORS[level]}"
         />
       `);
-        }
-      );
-    }
-  );
+    });
+  });
 
   /*
    * Month labels
    */
   const monthLabels = [];
-
   let previousMonth = "";
   let previousLabelX = -Infinity;
 
-  weeks.forEach(
-    (week, weekIndex) => {
-      const firstDay =
-        week.contributionDays[0];
+  weeks.forEach((week, weekIndex) => {
+    const firstDay = week.contributionDays[0];
+    if (!firstDay) return;
 
-      if (!firstDay) return;
+    // Fix: Parse month label date in UTC
+    const date = new Date(`${firstDay.date}T00:00:00Z`);
 
-      const date = new Date(
-        `${firstDay.date}T00:00:00`
-      );
+    const month = date.toLocaleString("en-US", {
+      month: "short",
+      timeZone: "UTC",
+    });
 
-      const month =
-        date.toLocaleString(
-          "en-US",
-          {
-            month: "short",
-          }
-        );
+    const x = weekdayLabelWidth + weekIndex * weekWidth + 2;
+    const minimumSpacing = 38;
 
-      const x =
-        weekdayLabelWidth +
-        weekIndex * weekWidth +
-        2;
-
-      /*
-       * Prevent labels such as
-       * "Sep" and "Oct" from touching.
-       */
-      const minimumSpacing = 38;
-
-      if (
-        month !== previousMonth &&
-        x - previousLabelX >=
-          minimumSpacing
-      ) {
-        monthLabels.push(`
+    if (month !== previousMonth && x - previousLabelX >= minimumSpacing) {
+      monthLabels.push(`
         <text
           x="${x}"
-          y="34"
+          y="${headerHeight - 10}"
           font-size="11"
           fill="#5D3140"
         >
@@ -209,49 +76,34 @@ function createSvg(
         </text>
       `);
 
-        previousMonth = month;
-        previousLabelX = x;
-      }
+      previousMonth = month;
+      previousLabelX = x;
     }
-  );
+  });
 
   /*
    * Weekday labels
    */
   const weekdayLabels = [
-    {
-      name: "Mon",
-      index: 1,
-    },
-    {
-      name: "Wed",
-      index: 3,
-    },
-    {
-      name: "Fri",
-      index: 5,
-    },
+    { name: "Mon", index: 1 },
+    { name: "Wed", index: 3 },
+    { name: "Fri", index: 5 },
   ];
 
-  const weekdayText =
-    weekdayLabels
-      .map(
-        ({ name, index }) => `
+  const weekdayText = weekdayLabels
+    .map(
+      ({ name, index }) => `
         <text
           x="0"
-          y="${
-            monthLabelHeight +
-            index * weekWidth +
-            10
-          }"
+          y="${headerHeight + index * weekWidth + 10}"
           font-size="10"
           fill="#5D3140"
         >
           ${name}
         </text>
       `
-      )
-      .join("");
+    )
+    .join("");
 
   /*
    * Final SVG
@@ -272,11 +124,45 @@ function createSvg(
     rx="18"
   />
 
+  <!-- Flower -->
+  <text
+    x="${calendarWidth / 2}"
+    y="24"
+    text-anchor="middle"
+    font-size="20"
+  >
+    🌸
+  </text>
+
+  <!-- Title -->
+  <text
+    x="${calendarWidth / 2}"
+    y="47"
+    text-anchor="middle"
+    font-size="18"
+    font-weight="700"
+    fill="#5D3140"
+  >
+    GitHub Contributions
+  </text>
+
+  <!-- Subtitle -->
+  <text
+    x="${calendarWidth / 2}"
+    y="65"
+    text-anchor="middle"
+    font-size="11"
+    fill="#CF4173"
+  >
+    Pabasara Ranasinghe's coding activity
+  </text>
+
   <!-- Total contributions -->
   <text
-    x="${weekdayLabelWidth}"
-    y="18"
-    font-size="14"
+    x="${calendarWidth / 2}"
+    y="82"
+    text-anchor="middle"
+    font-size="10"
     font-weight="600"
     fill="#5D3140"
   >
@@ -294,49 +180,3 @@ function createSvg(
 </svg>
 `;
 }
-
-async function main() {
-  console.log(
-    `Fetching GitHub contributions for ${username}...`
-  );
-
-  const calendar =
-    await getContributions();
-
-  const weeks =
-    calendar.weeks;
-
-  const totalContributions =
-    calendar.totalContributions;
-
-  console.log(
-    `Received ${weeks.length} weeks of contribution data.`
-  );
-
-  console.log(
-    `Total contributions: ${totalContributions}`
-  );
-
-  const svg = createSvg(
-    weeks,
-    totalContributions
-  );
-
-  fs.mkdirSync("public", {
-    recursive: true,
-  });
-
-  fs.writeFileSync(
-    "public/contribution-calendar.svg",
-    svg.trim()
-  );
-
-  console.log(
-    "Created public/contribution-calendar.svg"
-  );
-}
-
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
