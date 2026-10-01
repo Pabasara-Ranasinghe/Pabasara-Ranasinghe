@@ -126,6 +126,7 @@ function createSvg(weeks) {
   const monthLabels = [];
 
   let previousMonth = "";
+  let previousLabelX = -Infinity;
 
   weeks.forEach((week, weekIndex) => {
     const firstDay = week.contributionDays[0];
@@ -138,22 +139,35 @@ function createSvg(weeks) {
       month: "short",
     });
 
-    if (month !== previousMonth) {
+    const x =
+      weekdayLabelWidth +
+      weekIndex * weekWidth +
+      2;
+
+    // Approximate width of a month label.
+    // Prevents labels such as "Sep" and "Oct"
+    // from touching each other.
+    const minimumSpacing = 38;
+
+    if (
+      month !== previousMonth &&
+      x - previousLabelX >= minimumSpacing
+    ) {
       monthLabels.push(`
         <text
-          x="${weekdayLabelWidth + weekIndex * weekWidth}"
+          x="${x}"
           y="14"
           font-size="11"
           fill="#5D3140"
         >
           ${month}
         </text>
-      `);
+    `  );
 
       previousMonth = month;
+      previousLabelX = x;
     }
-  });
-
+});
   const weekdayLabels = [
     { name: "Mon", index: 1 },
     { name: "Wed", index: 3 },
