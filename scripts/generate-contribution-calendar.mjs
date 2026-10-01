@@ -85,3 +85,14 @@ function generateSVG(contributionData) {
   svg += `</svg>`;
   return svg;
 }
+
+// Ensure public directory exists
+const outputDir = path.join(process.cwd(), 'public');
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+}
+
+// Write SVG file
+const svgPath = path.join(outputDir, 'contribution-calendar-light.svg');
+fs.writeFileSync(svgPath, svgContent);
+console.log('Successfully generated contribution-calendar-light.svg');
