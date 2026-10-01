@@ -13,16 +13,23 @@ on:
     branches:
       - main
 
+# Grant write permissions so the runner can commit and push back to the repository
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Generate Contribution Calendar
         run: node scripts/generate-contribution-calendar.mjs
