@@ -1,19 +1,62 @@
 import fs from 'fs';
 import path from 'path';
 
-// ... (Your GitHub API fetching logic remains the same) ...
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const USERNAME = 'Pabasara-Ranasinghe';
 
-function generateSVG(contributionData) {
-  const { totalContributions, weeks } = contributionData;
+if (!GITHUB_TOKEN) {
+  console.error('Error: GITHUB_TOKEN is missing from environment variables.');
+  process.exit(1);
+}
+
+const query = `
+query($username: String!) {
+  user(login: $username) {
+    contributionsCollection {
+      contributionCalendar {
+        totalContributions
+        weeks {
+          contributionDays {
+            color
+            contributionCount
+            date
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+async function fetchContributions() {
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Authorization': `bearer ${GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+      'User-Agent': 'Node.js'
+    },
+    body: JSON.stringify({ query, variables: { username: USERNAME } })
+  });
+
+  const json = await response.json();
+  if (json.errors) {
+    console.error('GitHub API Query Error:', JSON.stringify(json.errors, null, 2));
+    process.exit(1);
+  }
+
+  return json.data.user.contributionsCollection.contributionCalendar;
+}
+
+function generateSVG(calendar) {
+  const { totalContributions, weeks } = calendar;
 
   const squareSize = 10;
   const squareGap = 3;
-  const dayLabelWidth = 30; // Space for Mon/Wed/Fri labels
-  
-  // ADJUSTED SPACING: Extra header height prevents text overlap
-  const headerHeight = 35;  // Height for "125 contributions..."
-  const monthLabelHeight = 18; // Height for Jan, Feb, Mar labels
-  
+  const dayLabelWidth = 30;
+  const headerHeight = 35;
+  const monthLabelHeight = 18;
+
   const width = dayLabelWidth + (weeks.length * (squareSize + squareGap)) + 20;
   const height = headerHeight + monthLabelHeight + (7 * (squareSize + squareGap)) + 30;
 
@@ -24,20 +67,28 @@ function generateSVG(contributionData) {
     .day { rx: 2px; ry: 2px; }
   </style>`;
 
-  // 1. Total Contributions Title (Positioned clearly above the calendar)
+  // Title
   svg += `<text x="${dayLabelWidth}" y="15" class="title">${totalContributions} contributions in the last year</text>`;
 
-  // 2. Month Labels
+  // Month Labels
   const monthY = headerHeight + 10;
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  let lastMonth = -1;
+
   weeks.forEach((week, weekIndex) => {
     const firstDay = week.contributionDays[0];
-    if (firstDay && firstDay.showMonthLabel) { // Render month text if new month starts
-      const x = dayLabelWidth + weekIndex * (squareSize + squareGap);
-      svg += `<text x="${x}" y="${monthY}" class="text">${firstDay.monthName}</text>`;
+    if (firstDay) {
+      const d = new Date(firstDay.date);
+      const m = d.getMonth();
+      if (m !== lastMonth) {
+        lastMonth = m;
+        const x = dayLabelWidth + weekIndex * (squareSize + squareGap);
+        svg += `<text x="${x}" y="${monthY}" class="text">${months[m]}</text>`;
+      }
     }
   });
 
-  // 3. Day Labels (Mon, Wed, Fri)
+  // Day Labels
   const gridStartY = headerHeight + monthLabelHeight;
   const dayNames = [
     { name: 'Mon', index: 1 },
@@ -49,20 +100,17 @@ function generateSVG(contributionData) {
     svg += `<text x="5" y="${y}" class="text">${day.name}</text>`;
   });
 
-  // 4. Contribution Grid Squares (With hover tooltips)
+  // Grid Squares
   weeks.forEach((week, weekIndex) => {
     const x = dayLabelWidth + weekIndex * (squareSize + squareGap);
 
     week.contributionDays.forEach((day, dayIndex) => {
-      // FIX: Ensure day exists and belongs strictly to the year's dataset
-      if (!day || dayIndex > 6) return; 
+      if (!day || dayIndex > 6) return;
 
       const y = gridStartY + dayIndex * (squareSize + squareGap);
       const color = day.color || '#ebedf0';
-
-      const dateStr = day.date; // e.g., "2026-09-29"
       const count = day.contributionCount || 0;
-      const tooltipText = `${count} contribution${count === 1 ? '' : 's'} on ${dateStr}`;
+      const tooltipText = `${count} contribution${count === 1 ? '' : 's'} on ${day.date}`;
 
       svg += `<rect class="day" x="${x}" y="${y}" width="${squareSize}" height="${squareSize}" fill="${color}">`;
       svg += `<title>${tooltipText}</title>`;
@@ -70,29 +118,36 @@ function generateSVG(contributionData) {
     });
   });
 
-  // 5. Legend (Less -> More)
+  // Legend
   const legendY = gridStartY + (7 * (squareSize + squareGap)) + 15;
   svg += `<text x="${dayLabelWidth}" y="${legendY + 8}" class="text">Less</text>`;
-  
   const colors = ['#ebedf0', '#fbe8eb', '#f19db1', '#cf4173', '#5d3140'];
   colors.forEach((col, idx) => {
     const lx = dayLabelWidth + 30 + idx * (squareSize + 2);
     svg += `<rect class="day" x="${lx}" y="${legendY}" width="${squareSize}" height="${squareSize}" fill="${col}" />`;
   });
-  
   svg += `<text x="${dayLabelWidth + 30 + colors.length * (squareSize + 2) + 5}" y="${legendY + 8}" class="text">More</text>`;
 
   svg += `</svg>`;
   return svg;
 }
 
-// Ensure public directory exists
-const outputDir = path.join(process.cwd(), 'public');
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+async function run() {
+  try {
+    const calendar = await fetchContributions();
+    const svgContent = generateSVG(calendar);
+
+    const outputDir = path.join(process.cwd(), 'public');
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+
+    fs.writeFileSync(path.join(outputDir, 'contribution-calendar-light.svg'), svgContent);
+    console.log('Successfully generated contribution-calendar-light.svg!');
+  } catch (err) {
+    console.error('Execution Failed:', err);
+    process.exit(1);
+  }
 }
 
-// Write SVG file
-const svgPath = path.join(outputDir, 'contribution-calendar-light.svg');
-fs.writeFileSync(svgPath, svgContent);
-console.log('Successfully generated contribution-calendar-light.svg');
+run();
