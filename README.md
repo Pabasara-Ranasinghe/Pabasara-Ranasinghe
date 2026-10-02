@@ -61,6 +61,8 @@
 
 <br>
 
+<br>
+
 <!-- ==================== TECH STACK ==================== -->
 
 <div align="center">
@@ -143,6 +145,8 @@
 
 <br>
 
+<br>
+
 
 <!-- ==================== GITHUB CONTRIBUTION ==================== -->
 
@@ -153,7 +157,7 @@
   alt="GitHub Contributions"
 />
 
-<p>Pabasara Ranasinghe's coding activity</p>
+<p>My coding activity</p>
 
 <img
   src="public/contribution-calendar.svg"
