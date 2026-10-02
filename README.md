@@ -1,7 +1,3 @@
-<!-- ==================== HEADER IMAGE ==================== -->
-<img width="1584" height="396" alt="White Blue Simple Watercolor Linkedin Banner (3)" src="https://github.com/user-attachments/assets/4bd279c1-2820-466a-a721-bfe4abdbdd3b" />
-
-
 <!-- ==================== HEADER ==================== -->
 
 <div align="center">
@@ -32,7 +28,7 @@
 <p><strong>Software Engineering Student • Developer • Builder</strong></p>
 
 <p>
-🎓 <strong>Software Engineering Undergratuate @ NIBM</strong><br>
+🎓 <strong>Software Engineering Undergraduate at NIBM</strong><br>
 💻 <strong>Frontend:</strong> React • Vite<br>
 ⚙️ <strong>Backend:</strong> Java • Spring Boot • REST APIs<br>
 🗄️ <strong>Database:</strong> MySQL<br>
@@ -67,7 +63,14 @@
 
 <!-- ==================== TECH STACK ==================== -->
 
-<h2 align="center">🛠️ Tech Stack</h2>
+<div align="center">
+
+<img
+  src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&duration=2500&pause=1000&color=000000&center=true&vCenter=true&width=500&height=40&lines=%F0%9F%9B%A0%EF%B8%8F+Tech+Stack"
+  alt="Tech Stack"
+/>
+
+</div>
 
 <h3 align="center">💻 Languages</h3>
 
@@ -145,14 +148,17 @@
 
 <div align="center">
 
-<h2>🌸 GitHub Contributions</h2>
+<img
+  src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&duration=2500&pause=1000&color=000000&center=true&vCenter=true&width=500&height=40&lines=%F0%9F%8C%B8+GitHub+Contributions"
+  alt="GitHub Contributions"
+/>
 
 <p>Pabasara Ranasinghe's coding activity</p>
 
 <img
-src="public/contribution-calendar.svg"
-width="100%"
-alt="GitHub Contribution Calendar"
+  src="public/contribution-calendar.svg"
+  width="100%"
+  alt="GitHub Contribution Calendar"
 />
 
 </div>
@@ -179,9 +185,16 @@ alt="GitHub Contribution Calendar"
 
 <!-- ==================== FEATURED PROJECTS ==================== -->
 
+<br>
+
+<br> 
+
 <div align="center">
-  
-<h2 align="center">🚀 Featured Projects</h2>
+
+<img
+  src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&duration=2500&pause=1000&color=000000&center=true&vCenter=true&width=500&height=40&lines=%F0%9F%9A%80+Featured+Projects"
+  alt="Featured Projects"
+/>
 
 </div>
 
@@ -195,6 +208,7 @@ alt="GitHub Contribution Calendar"
 </div>
 
 <div align="center">
+
 
 <!-- ==================== MEDORA ==================== -->
 
@@ -449,13 +463,18 @@ travel packages and bookings through independent microservices.
 </div>
 
 <br>
-
+<br>
 
 <!-- ==================== EDUCATION ==================== -->
 
-## 🎓 Education
+<div align="center">
 
-<br>
+<img
+  src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&duration=2500&pause=1000&color=000000&center=true&vCenter=true&width=500&height=40&lines=%F0%9F%8E%93+Education"
+  alt="Education"
+/>
+
+</div>
 
 <table width="100%">
 <tr>
@@ -534,15 +553,23 @@ Business Management (NIBM)
 
 <br>
 
+<br>
 
 
 <!-- ==================== CONNECT WITH ME ==================== -->
 
-## ☁️ Connect With Me
+<div align="center">
+
+<img
+  src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&duration=2500&pause=1000&color=000000&center=true&vCenter=true&width=500&height=40&lines=%E2%98%81%EF%B8%8F+Connect+With+Me"
+  alt="Connect With Me"
+/>
+
+</div>
 
 <div align="center">
 
-<br><br>
+<br>
 
 <a href="mailto:rpabasara216@gmail.com">
 <img
@@ -573,6 +600,16 @@ Business Management (NIBM)
 
 
 
+<!-- ==================== PROFILE VIEWS ==================== -->
+<div align="center">
+
+<img
+  src="https://komarev.com/ghpvc/?username=Pabasara-Ranasinghe&label=Profile%20Views&color=CF4173&style=flat-square"
+  alt="Profile Views"
+/>
+
+</div>
+
 
 
 
@@ -584,3 +621,11 @@ Business Management (NIBM)
     alt="Footer Banner"
   />
 </div>
+
+
+
+<!-- ==================== THANK YOU ==================== -->
+
+<img width="1584" height="396" alt="White Blue Simple Watercolor Linkedin Banner (4)" src="https://github.com/user-attachments/assets/57b7a3f0-c171-48e0-94d1-35a49bbc6277" />
+
+
