@@ -5,7 +5,7 @@
 <!-- ==================== HEADER ==================== -->
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=ffb6c1&height=220&section=header&text=Hi%20there!%20I'm%20a%20Developer%20🌸&fontSize=40&fontColor=ffffff&animation=fadeIn" width="100%" alt="Header Banner"/>
+ <img src="https://capsule-render.vercel.app/api?type=waving&color=ffb6c1&height=220&section=header&text=Welcome%20to%20my%20profile%20🌸&fontSize=40&fontColor=ffffff&animation=fadeIn" width="100%" alt="Header Banner"/>
 </div>
 
 <!-- ==================== TYPING ANIMATION ==================== -->
@@ -23,21 +23,29 @@
 
 <!-- ==================== INTRODUCTION ==================== -->
 
-<h2 align="center">👋 About Me</h2>
-
 <div align="center">
 
-🎓 Software Engineering Student at **NIBM**
+<h2>🌸 About Me</h2>
 
-💻 Interested in **Frontend, Full-Stack & AI Development**
+<h3>I'm Pabasara Ranasinghe</h3>
 
-🌱 Currently improving my skills in **React, Java, Spring Boot & Node.js**
+<p><strong>Software Engineering Student • Developer • Builder</strong></p>
 
-🚀 I enjoy turning ideas into **modern, responsive and user-friendly applications**
+<p>
+🎓 <strong>Software Engineering Undergratuate @ NIBM</strong><br>
+💻 <strong>Frontend:</strong> React • Vite<br>
+⚙️ <strong>Backend:</strong> Java • Spring Boot • REST APIs<br>
+🗄️ <strong>Database:</strong> MySQL<br>
+🔧 <strong>Tools:</strong> Git • GitHub<br>
+🤖 <strong>Interests:</strong> AI • Full-Stack Development • UI/UX
+</p>
 
-🧠 Always learning, experimenting and building new projects
+<blockquote>
+<p>Building projects, solving problems, and learning one commit at a time. 🌸</p>
+</blockquote>
 
 </div>
+
 
 <!-- ==================== SECTION SEPARATOR ==================== -->
 
@@ -139,21 +147,52 @@
 
 <h2>🌸 GitHub Contributions</h2>
 
+<p>Pabasara Ranasinghe's coding activity</p>
+
 <img
-  src="public/contribution-calendar.svg"
-  width="100%"
-  alt="GitHub Contribution Calendar"
+src="public/contribution-calendar.svg"
+width="100%"
+alt="GitHub Contribution Calendar"
 />
 
 </div>
 
 
 
-<!-- ==================== FEATURED PROJECTS ==================== -->
-
-<h2 align="center">🚀 Featured Projects</h2>
+<!-- ==================== SECTION SEPARATOR ==================== -->
 
 <div align="center">
+  <img
+    src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=8&section=header"
+    width="40%"
+    alt="Left Separator"
+  />
+  🌸
+  <img
+    src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=8&section=header"
+    width="40%"
+    alt="Right Separator"
+  />
+</div>
+
+
+
+<!-- ==================== FEATURED PROJECTS ==================== -->
+
+<div align="center">
+  
+<h2 align="center">🚀 Featured Projects</h2>
+
+</div>
+
+<div align="center">
+
+<img
+  src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=8&section=header"
+  width="30%"
+/>
+
+</div>
 
 <div align="center">
 
@@ -196,7 +235,7 @@ report analysis with AI-powered guidance through a simple web interface.
 <div align="center">
 
 <img
-  src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=5&section=header"
+  src="https://capsule-render.vercel.app/api?type=rect&color=F6D8BD&height=5&section=header"
   width="70%"
 />
 
@@ -244,7 +283,7 @@ marks, term results, academic performance and role-based access.
 <div align="center">
 
 <img
-  src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=5&section=header"
+  src="https://capsule-render.vercel.app/api?type=rect&color=F6D8BD&height=5&section=header"
   width="70%"
 />
 
@@ -292,7 +331,7 @@ data through ESP32 devices and provides real-time monitoring and history.
 <div align="center">
 
 <img
-  src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=5&section=header"
+  src="https://capsule-render.vercel.app/api?type=rect&color=F6D8BD&height=5&section=header"
   width="70%"
 />
 
@@ -341,7 +380,7 @@ hospitals and blood banks with AI-assisted donor matching and IoT monitoring.
 <div align="center">
 
 <img
-  src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=5&section=header"
+  src="https://capsule-render.vercel.app/api?type=rect&color=F6D8BD&height=5&section=header"
   width="70%"
 />
 
