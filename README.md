@@ -496,7 +496,7 @@ travel packages and bookings through independent microservices.
 
 <td width="33%" align="center" valign="top">
 
-### 🌱 Certificate
+### 🚀 Certificate
 
 **Certificate in Software Engineering**
 
