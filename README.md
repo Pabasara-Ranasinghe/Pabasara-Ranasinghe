@@ -21,7 +21,7 @@
 
 <div align="center">
 
-<h2>🌸 About Me</h2>
+<h2>🌸 About Me 🌸</h2>
 
 <h3>I'm Pabasara Ranasinghe</h3>
 
