@@ -640,6 +640,5 @@ Business Management (NIBM)
 
 <!-- ==================== THANK YOU ==================== -->
 
-<img width="1584" height="396" alt="White Blue Simple Watercolor Linkedin Banner (4)" src="https://github.com/user-attachments/assets/57b7a3f0-c171-48e0-94d1-35a49bbc6277" />
-
+<img width="1584" height="396" alt="White Blue Simple Watercolor Linkedin Banner (5)" src="https://github.com/user-attachments/assets/1b1e7a29-b526-4da2-a508-565c002f70f5" />
 
