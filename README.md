@@ -148,24 +148,34 @@
 <br>
 
 
-<!-- ==================== GITHUB CONTRIBUTION ==================== -->
+<!-- ==================== GITHUB CONTRIBUTIONS ==================== -->
 
 <div align="center">
 
 <img
-  src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&duration=2500&pause=1000&color=000000&center=true&vCenter=true&width=500&height=40&lines=%F0%9F%8C%B8+GitHub+Contributions"
-  alt="GitHub Contributions"
+src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&duration=2500&pause=1000&color=000000&center=true&vCenter=true&width=500&height=40&lines=%F0%9F%8C%B8+GitHub+Contributions"
+alt="GitHub Contributions"
 />
 
-<p>My coding activity</p>
+<p>Pabasara Ranasinghe's coding activity</p>
 
 <img
-  src="public/contribution-calendar.svg"
-  width="100%"
-  alt="GitHub Contribution Calendar"
+src="public/contribution-calendar.svg"
+width="100%"
+alt="GitHub Contribution Calendar"
 />
 
+<br>
+
+<a href="https://pabasara-github-calendar.vercel.app/">
+  <img
+    src="https://img.shields.io/badge/🌐%20View%20Interactive%20Contribution%20Calendar-F39399?style=for-the-badge"
+    alt="View Interactive Contribution Calendar"
+  />
+</a>
+
 </div>
+
 
 
 
