@@ -118,10 +118,11 @@
 
 <div align="center">
 
-<img
-  src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1800&pause=700&color=CF4173&center=true&vCenter=true&width=750&height=35&lines=React+%E2%9A%A1+Java+%E2%9A%A1+Spring+Boot+%E2%9A%A1+MySQL;Frontend+%E2%9A%A1+Backend+%E2%9A%A1+REST+APIs+%E2%9A%A1+AI;Building+%E2%9A%A1+Learning+%E2%9A%A1+Improving+%E2%9A%A1+Creating"
-  alt="Tech Stack Animation"
-/>
+<p>
+  <strong>React ⚡ Java ⚡ Spring Boot ⚡ MySQL</strong><br>
+  <strong>Frontend ⚡ Backend ⚡ REST APIs ⚡ AI</strong><br>
+  <strong>Building ⚡ Learning ⚡ Improving ⚡ Creating</strong>
+</p>
 
 </div>
 
