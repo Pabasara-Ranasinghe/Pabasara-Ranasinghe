@@ -27,14 +27,9 @@
 
 <p><strong>Software Engineering Student • Developer • Builder</strong></p>
 
-<p>
-🎓 <strong>Software Engineering Undergraduate at NIBM</strong><br>
-💻 <strong>Frontend:</strong> React • Vite<br>
-⚙️ <strong>Backend:</strong> Java • Spring Boot • REST APIs<br>
-🗄️ <strong>Database:</strong> MySQL<br>
-🔧 <strong>Tools:</strong> Git • GitHub<br>
-🤖 <strong>Interests:</strong> AI • Full-Stack Development • UI/UX
-</p>
+<blockquote>
+<p>Passionate about software engineering, turning ideas into meaningful projects, and continuously growing through every challenge. 🚀</p>
+</blockquote>
 
 <blockquote>
 <p>Building projects, solving problems, and learning one commit at a time. 🌸</p>
