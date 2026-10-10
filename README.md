@@ -609,6 +609,18 @@ Business Management (NIBM)
 </div>
 
 
+<!-- ==================== PROFILE VIEWS ==================== -->
+
+<div align="center">
+
+<img
+  src="https://hits.sh/github.com/Pabasara-Ranasinghe.svg?style=flat-square&label=Profile%20Views&color=CF4173"
+  alt="Profile Views"
+/>
+
+</div>
+
+
 
 <!-- ==================== FOOTER ==================== -->
 <div align="center">
