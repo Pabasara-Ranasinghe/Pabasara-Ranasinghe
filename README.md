@@ -610,19 +610,6 @@ Business Management (NIBM)
 
 
 
-<!-- ==================== PROFILE VIEWS ==================== -->
-<div align="center">
-
-<img
-  src="https://komarev.com/ghpvc/?username=Pabasara-Ranasinghe&label=Profile%20Views&color=CF4173&style=flat-square"
-  alt="Profile Views"
-/>
-
-</div>
-
-
-
-
 <!-- ==================== FOOTER ==================== -->
 <div align="center">
   <img
