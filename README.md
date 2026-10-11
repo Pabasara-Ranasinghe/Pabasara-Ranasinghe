@@ -109,19 +109,6 @@
 
 <br>
 
-<!-- ==================== TECH ANIMATION ==================== -->
-
-<div align="center">
-
-<p>
-  <strong>React | Java | Spring Boot | MySQL</strong><br>
-  <strong>Frontend | Backend | REST APIs | AI</strong><br>
-  <strong> 🍄 Building | 🍄 Learning | 🍄 Improving | 🍄 Creating</strong>
-</p>
-
-</div>
-
-<br>
 
 <!-- ==================== SECTION SEPARATOR ==================== -->
 
