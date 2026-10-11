@@ -606,7 +606,7 @@ Business Management (NIBM)
 
 <br><br>
 
-🌸 **Let's connect, collaborate and build something meaningful together.**
+🌸 **Let us connect, collaborate and build something meaningful together.**
 
 </div>
 
