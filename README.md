@@ -69,7 +69,7 @@
 
 </div>
 
-<h3 align="center">💻 Languages...</h3>
+<h3 align="center">💻 Languages</h3>
 
 <div align="center">
 
