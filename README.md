@@ -1,7 +1,7 @@
 <!-- ==================== HEADER ==================== -->
 
 <div align="center">
- <img src="https://capsule-render.vercel.app/api?type=waving&color=ffb6c1&height=220&section=header&text=Welcome%20to%20my%20profile%20🚀&fontSize=40&fontColor=ffffff&animation=fadeIn" width="100%" alt="Header Banner"/>
+ <img src="https://capsule-render.vercel.app/api?type=waving&color=ffb6c1&height=220&section=header&text=Welcome%20to%20my%20profile%20🌸&fontSize=40&fontColor=ffffff&animation=fadeIn" width="100%" alt="Header Banner"/>
 </div>
 
 <!-- ==================== TYPING ANIMATION ==================== -->
