@@ -25,7 +25,9 @@
 
 <h3>I'm Pabasara Ranasinghe</h3>
 
-<p><strong>Software Engineering Student • Developer • Builder</strong></p>
+<p><strong>Software Engineering Student 
+ • Developer 
+ • Builder</strong></p>
 
 <blockquote>
 <p>Passionate about software engineering, turning ideas into meaningful projects, and continuously growing through every challenge. 🚀</p>
