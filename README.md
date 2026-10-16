@@ -627,7 +627,7 @@ Business Management (NIBM)
 <!-- ==================== FOOTER ==================== -->
 <div align="center">
   <img
-    src="https://capsule-render.vercel.app/api?type=waving&color=ffb6c1&height=150&section=footer&text=Keep%20Building%20
+    src="https://capsule-render.vercel.app/api?type=waving&color=ffb6c1&height=150&section=footer&text=Keep%20Building%20🚀
    &fontSize=30&fontColor=ffffff&animation=fadeIn"
     width="100%"
     alt="Footer Banner"
