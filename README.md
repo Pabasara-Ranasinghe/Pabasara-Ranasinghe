@@ -23,7 +23,7 @@
 
 <h2>🌸 About Me</h2>
 
-<h3>I am Pabasara Ranasinghe</h3>
+<h3>I'm Pabasara Ranasinghe</h3>
 
 <p><strong>Software Engineering Student • Developer • Builder</strong></p>
 
