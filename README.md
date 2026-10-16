@@ -514,7 +514,7 @@ Business Management (NIBM)
 
 <br>
 
-**GPA: 3.86**
+**GPA: 3.8**
 
 <br>
 
