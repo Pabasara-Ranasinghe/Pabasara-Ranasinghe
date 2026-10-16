@@ -28,7 +28,7 @@
 <p><strong>Software Engineering Student • Developer • Builder</strong></p>
 
 <blockquote>
-<p>Passionate about software engineering, turning ideas into meaningful projects, and continuously growing through every challenge. 🚀</p>
+<p>Passionate about software engineering, turning ideas into meaningful projects, and continuously growing and learning through every challenge. 🚀</p>
 </blockquote>
 
 <blockquote>
