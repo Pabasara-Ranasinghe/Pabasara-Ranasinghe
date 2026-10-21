@@ -46,7 +46,7 @@
     width="40%"
     alt="Left Separator"
   />
-  🌸🌸
+  🌸
   <img
     src="https://capsule-render.vercel.app/api?type=rect&color=CF4173&height=8&section=header"
     width="40%"
