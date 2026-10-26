@@ -32,7 +32,7 @@
 </blockquote>
 
 <blockquote>
-<p>Building projects, solving problems, and learning one commit at a time. 🌸</p>
+<p>Building projects, solving problems, and learning one commit at a time. 💡</p>
 </blockquote>
 
 </div>
