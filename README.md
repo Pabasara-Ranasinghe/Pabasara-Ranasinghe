@@ -458,6 +458,55 @@ travel packages and bookings through independent microservices.
 
 <div align="center">
 
+<div align="center">
+
+<img
+  src="https://capsule-render.vercel.app/api?type=rect&color=F6D8BD&height=5&section=header"
+  width="70%"
+/>
+
+</div>
+
+
+<!-- ==================== CACTORA ==================== -->
+
+<div align="center">
+
+## 🌵 Cactora
+
+### 🍃 AI-Powered Cactus Knowledge Platform
+
+<p>
+A modern cactus knowledge platform that helps users explore cactus genera,
+discover botanical information, and learn about cacti through Cactora AI.
+</p>
+
+<img src="https://img.shields.io/badge/React-CF4173?style=flat-square&logo=react&logoColor=white" />
+<img src="https://img.shields.io/badge/Vite-5D3140?style=flat-square&logo=vite&logoColor=white" />
+<img src="https://img.shields.io/badge/Spring_Boot-5D3140?style=flat-square&logo=springboot&logoColor=white" />
+<img src="https://img.shields.io/badge/Java_21-F39399?style=flat-square&logo=openjdk&logoColor=5D3140" />
+<img src="https://img.shields.io/badge/MySQL-CF4173?style=flat-square&logo=mysql&logoColor=white" />
+<img src="https://img.shields.io/badge/Gemini_AI-5D3140?style=flat-square&logo=googlegemini&logoColor=white" />
+
+<br><br>
+
+| Feature | Description |
+| :--- | :--- |
+| 🌵 Cactus Genera | Explore different cactus subfamilies and genera |
+| 📚 Botanical Guides | Learn detailed information about various cacti |
+| 🤖 Cactora AI | Get AI-powered answers to cactus-related questions |
+| 🖼️ Cactus Images | Discover images of different cactus species |
+| 🍃 Cactus Care Guide | Get guidance on soil, watering, growing conditions |
+| 📱 Responsive UI | Browse across different screen sizes |
+
+<br>
+
+<a href="https://github.com/Pabasara-Ranasinghe/Cactora">
+  <img src="https://img.shields.io/badge/Explore%20Project-5D3140?style=for-the-badge&logo=github&logoColor=white" alt="Explore Cactora Project" />
+</a>
+
+</div>
+
 <!-- ==================== SECTION SEPARATOR ==================== -->
 
 <div align="center">
