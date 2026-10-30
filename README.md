@@ -492,12 +492,12 @@ discover botanical information, and learn about cacti through Cactora AI.
 
 | Feature | Description |
 | :--- | :--- |
-| 🌵 Cactus Genera | Explore different cactus subfamilies and genera |
-| 📚 Botanical Guides | Learn detailed information about various cacti |
-| 🤖 Cactora AI | Get AI-powered answers to cactus-related questions |
-| 🖼️ Cactus Images | Discover images of different cactus species |
-| 🍃 Cactus Care Guide | Get guidance on soil, watering, growing conditions |
-| 📱 Responsive UI | Browse across different screen sizes |
+| 🌵 Cactus Genera | Explore cactus subfamilies and genera |
+| 📚 Botanical Guides | Learn about different cacti |
+| 🤖 Cactora AI | Get AI-powered cactus answers |
+| 🖼️ Cactus Images | Explore cactus species images |
+| 🍃 Cactus Care Guide | Learn about cactus care |
+| 📱 Responsive UI | Browse on any device |
 
 <br>
 
